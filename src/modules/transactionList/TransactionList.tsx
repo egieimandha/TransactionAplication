@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
-import {Container} from '@components';
+import {Text, Pressable, FlatList, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {Container, View} from '@components';
 import {RootStackNavigationProps} from '@navigation/screens.interface';
 import {fetchListTransaction} from './transactionList.model';
 import {Transaction} from './transactionList.interface';
+import {spacings} from '@root/src/themes';
+import TransactionItem from './transactionList.fragments/TransactionItem';
 
 function TransactionList(): JSX.Element {
   const {navigate} = useNavigation<RootStackNavigationProps>();
@@ -28,28 +30,45 @@ function TransactionList(): JSX.Element {
     };
   }, []);
 
+  const renderItem = ({item}: {item: Transaction}) => {
+    if (item && item.id) {
+      return (
+        <Pressable
+          key={item.id}
+          onPress={() =>
+            navigate('DetailTransaction', {
+              transaction_id: item.id,
+            })
+          }>
+          <TransactionItem {...item} />
+        </Pressable>
+      );
+    }
+    return <></>;
+  };
+
   return (
     <Container>
-      <View>
-        <Text>List</Text>
+      <View paddingHorizontal={spacings.space8}>
+        <View>
+          <Text>List</Text>
+        </View>
+        <FlatList
+          style={styles.avoidPaddingFlatlist}
+          data={transactions}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => `${item.id}-${index}`}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
-      {transactions?.map(item => {
-        return (
-          <Pressable
-            key={item.id}
-            onPress={() =>
-              navigate('DetailTransaction', {
-                transaction_id: item.id,
-              })
-            }>
-            <View>
-              <Text>{item.id}</Text>
-            </View>
-          </Pressable>
-        );
-      })}
     </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  avoidPaddingFlatlist: {
+    marginBottom: spacings.space60,
+  },
+});
 
 export default TransactionList;

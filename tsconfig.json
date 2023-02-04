@@ -21,6 +21,8 @@
       "@navigation": ["src/navigation/index.tsx"],
       "@utils/*": ["src/utils/*"],
       "@utils": ["src/utils/index.tsx"],
+      "@themes/*": ["src/themes/*"],
+      "@themes": ["src/utils/themes.tsx"],
     }
   },
 }

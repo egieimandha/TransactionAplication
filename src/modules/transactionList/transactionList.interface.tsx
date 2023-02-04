@@ -20,3 +20,18 @@ export type Transactionlist = {
 };
 
 export type TransactionlistResponse = ResponseAPI<Transactionlist>;
+
+export type ColorAndLabel = {
+  backgroundColor: string;
+  borderColor: string;
+  label: string;
+};
+
+export type BarStatuProps = {
+  backgroundColor: string;
+};
+
+export interface LabelStatusProps extends BarStatuProps {
+  borderColor: string;
+  label: string;
+}
