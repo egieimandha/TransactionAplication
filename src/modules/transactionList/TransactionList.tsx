@@ -1,18 +1,23 @@
 import React from 'react';
-import {Text, Pressable, FlatList, StyleSheet} from 'react-native';
+import {Pressable, FlatList, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Container, View} from '@components';
 import {RootStackNavigationProps} from '@navigation/screens.interface';
-import {fetchListTransaction} from './transactionList.model';
+import {
+  aTransactionLists,
+  fetchListTransaction,
+  sFinalTransactionLists,
+} from './transactionList.model';
 import {Transaction} from './transactionList.interface';
 import {spacings} from '@root/src/themes';
 import TransactionItem from './transactionList.fragments/TransactionItem';
+import SearchAndSorting from './transactionList.fragments/SearchAndSorting';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 function TransactionList(): JSX.Element {
   const {navigate} = useNavigation<RootStackNavigationProps>();
-  const [transactions, setTransactions] = React.useState<null | Transaction[]>(
-    null,
-  );
+  const setTransactions = useSetRecoilState(aTransactionLists);
+  const transactions = useRecoilValue(sFinalTransactionLists);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -28,6 +33,7 @@ function TransactionList(): JSX.Element {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderItem = ({item}: {item: Transaction}) => {
@@ -50,9 +56,7 @@ function TransactionList(): JSX.Element {
   return (
     <Container>
       <View paddingHorizontal={spacings.space8}>
-        <View>
-          <Text>List</Text>
-        </View>
+        <SearchAndSorting />
         <FlatList
           style={styles.avoidPaddingFlatlist}
           data={transactions}

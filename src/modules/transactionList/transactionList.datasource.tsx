@@ -23,3 +23,31 @@ export async function getListTransaction(): Promise<null | Transactionlist> {
     return null;
   }
 }
+
+export const sortingList = [
+  {
+    label: 'URUTKAN',
+    sortby: '',
+    sorttype: '',
+  },
+  {
+    label: 'Nama A-Z',
+    sortby: 'beneficiary_name',
+    sorttype: 'asc',
+  },
+  {
+    label: 'Nama Z-A',
+    sortby: 'beneficiary_name',
+    sorttype: 'desc',
+  },
+  {
+    label: 'Tanggal Terbaru',
+    sortby: 'created_at',
+    sorttype: 'desc',
+  },
+  {
+    label: 'Tanggal Terlama',
+    sortby: 'created_at',
+    sorttype: 'asc',
+  },
+];

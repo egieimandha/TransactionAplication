@@ -15,6 +15,7 @@ const spacings = {
   space6: nomalize(6),
   space8: nomalize(8),
   space10: nomalize(10),
+  space20: nomalize(20),
   space60: nomalize(60),
 };
 

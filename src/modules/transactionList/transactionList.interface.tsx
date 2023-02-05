@@ -35,3 +35,9 @@ export interface LabelStatusProps extends BarStatuProps {
   borderColor: string;
   label: string;
 }
+
+export type SortingProps = {
+  label: string;
+  sortby: string;
+  sorttype: string;
+};
