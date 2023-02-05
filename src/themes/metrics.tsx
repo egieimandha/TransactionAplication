@@ -11,11 +11,14 @@ export function normalize(size: number) {
 }
 
 const spacings = {
+  space1: normalize(1),
   space2: normalize(2),
   space4: normalize(4),
   space6: normalize(6),
   space8: normalize(8),
   space10: normalize(10),
+  space12: normalize(12),
+  space16: normalize(16),
   space20: normalize(20),
   space60: normalize(60),
 };

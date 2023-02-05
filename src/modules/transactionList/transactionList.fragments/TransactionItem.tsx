@@ -11,6 +11,8 @@ import {
   generateBankName,
   generateColorAndLabel,
 } from '../transactionList.utils';
+import {afTransaction} from '../transactionList.model';
+import {useRecoilState} from 'recoil';
 
 function LabelStatus({
   backgroundColor,
@@ -43,16 +45,27 @@ function BarStatus({backgroundColor}: BarStatuProps): JSX.Element {
   );
 }
 
-function TransactionItem({
-  sender_bank,
-  beneficiary_bank,
-  beneficiary_name,
-  amount,
-  created_at,
-  status,
-}: Transaction): JSX.Element {
+function TransactionItem(dataTransaction: Transaction): JSX.Element {
+  const {
+    sender_bank,
+    beneficiary_bank,
+    beneficiary_name,
+    amount,
+    created_at,
+    status,
+    id,
+  } = dataTransaction;
+  const [transaction, setTransaction] = useRecoilState(afTransaction(id));
   const {backgroundColor, borderColor, label, fontType} =
     generateColorAndLabel(status);
+
+  React.useEffect(() => {
+    if (!transaction) {
+      setTransaction(dataTransaction);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <View
       row

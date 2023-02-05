@@ -11,12 +11,8 @@ import {RootStackParams} from './screens.interface';
 const RootStack = createNativeStackNavigator<RootStackParams>();
 export const RootNavigator = () => {
   return (
-    <RootStack.Navigator>
-      <RootStack.Screen
-        options={{headerShown: false}}
-        name="TransactionList"
-        component={TransactionList}
-      />
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
+      <RootStack.Screen name="TransactionList" component={TransactionList} />
       <RootStack.Screen
         name="DetailTransaction"
         component={TransactionDetail}

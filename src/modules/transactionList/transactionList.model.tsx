@@ -1,4 +1,4 @@
-import {atom, selector} from 'recoil';
+import {atom, atomFamily, selector} from 'recoil';
 import {getListTransaction, sortingList} from './transactionList.datasource';
 import {SortingProps, Transaction} from './transactionList.interface';
 
@@ -18,6 +18,11 @@ export async function fetchListTransaction(): Promise<null | Transaction[]> {
 export const aTransactionLists = atom<Transaction[]>({
   key: 'transactionLists',
   default: [],
+});
+
+export const afTransaction = atomFamily<Transaction | null, string>({
+  key: 'transaction',
+  default: null,
 });
 
 export const aSearch = atom<string>({

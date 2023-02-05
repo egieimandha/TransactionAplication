@@ -3,7 +3,7 @@ import {normalize} from './metrics';
 
 const fontsize = {
   fs12: normalize(12),
-  fs16: normalize(16),
+  fs14: normalize(14),
 };
 
 const fontType = {
@@ -39,12 +39,12 @@ const fontType = {
     color: colors.orange,
     fontWeight: 'bold',
   },
-  fs16fw400Black: {
-    fontSize: fontsize.fs16,
+  fs14fw400Black: {
+    fontSize: fontsize.fs14,
     color: colors.black,
   },
-  fs16fw800Black: {
-    fontSize: fontsize.fs16,
+  fs14fw800Black: {
+    fontSize: fontsize.fs14,
     color: colors.black,
     fontWeight: 'bold',
   },
