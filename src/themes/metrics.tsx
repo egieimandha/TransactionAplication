@@ -4,25 +4,26 @@ const {width, height} = Dimensions.get('window');
 const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
 const scale = SCREEN_WIDTH / 375;
-export function nomalize(size: number) {
+
+export function normalize(size: number) {
   const newSize = size * scale;
   return Math.round(PixelRatio.roundToNearestPixel(newSize));
 }
 
 const spacings = {
-  space2: nomalize(2),
-  space4: nomalize(4),
-  space6: nomalize(6),
-  space8: nomalize(8),
-  space10: nomalize(10),
-  space20: nomalize(20),
-  space60: nomalize(60),
+  space2: normalize(2),
+  space4: normalize(4),
+  space6: normalize(6),
+  space8: normalize(8),
+  space10: normalize(10),
+  space20: normalize(20),
+  space60: normalize(60),
 };
 
 const radius = {
-  round4: nomalize(4),
-  round8: nomalize(8),
-  round10: nomalize(10),
+  round4: normalize(4),
+  round8: normalize(8),
+  round10: normalize(10),
 };
 
 const display = {

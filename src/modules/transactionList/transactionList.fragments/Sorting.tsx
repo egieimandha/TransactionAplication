@@ -1,6 +1,6 @@
 import React from 'react';
-import {Modal, Pressable, StyleSheet, Text} from 'react-native';
-import {View} from '@components';
+import {Modal, Pressable, StyleSheet} from 'react-native';
+import {View, Text} from '@components';
 import {sortingList} from '../transactionList.datasource';
 import {colors, radius, spacings} from '@root/src/themes';
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
@@ -80,7 +80,7 @@ function Sorting(): JSX.Element {
   return (
     <>
       <Pressable onPress={() => setModalVisible(true)}>
-        <Text>{sorting.label} V</Text>
+        <Text type="fs12fw800Orange">{sorting.label} V</Text>
       </Pressable>
       <SortingModal />
     </>

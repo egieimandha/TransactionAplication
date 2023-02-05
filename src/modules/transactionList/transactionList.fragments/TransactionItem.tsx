@@ -1,6 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {View} from '@components';
+import {View, Text} from '@components';
 import {toCurrency, dateStringToDate} from '@utils/strings';
 import {radius, spacings} from '@root/src/themes';
 import {
@@ -17,6 +16,7 @@ function LabelStatus({
   backgroundColor,
   borderColor,
   label,
+  fontType,
 }: LabelStatusProps): JSX.Element {
   return (
     <View
@@ -25,7 +25,7 @@ function LabelStatus({
       borderWidth={1}
       borderRadius={radius.round8}
       paddingHorizontal={spacings.space10}>
-      <Text>{label}</Text>
+      <Text type={fontType}>{label}</Text>
     </View>
   );
 }
@@ -51,7 +51,8 @@ function TransactionItem({
   created_at,
   status,
 }: Transaction): JSX.Element {
-  const {backgroundColor, borderColor, label} = generateColorAndLabel(status);
+  const {backgroundColor, borderColor, label, fontType} =
+    generateColorAndLabel(status);
   return (
     <View
       row
@@ -62,10 +63,10 @@ function TransactionItem({
       borderRadius={radius.round10}>
       <BarStatus backgroundColor={borderColor} />
       <View flex>
-        <Text>{`${generateBankName(sender_bank)} -> ${generateBankName(
-          beneficiary_bank,
-        )}`}</Text>
-        <Text>{beneficiary_name.toUpperCase()}</Text>
+        <Text type="fs12fw800Black">{`${generateBankName(
+          sender_bank,
+        )} -> ${generateBankName(beneficiary_bank)}`}</Text>
+        <Text uppercase>{beneficiary_name}</Text>
         <Text>{`${toCurrency(amount)} . ${dateStringToDate(created_at)}`}</Text>
       </View>
       <View>
@@ -73,6 +74,7 @@ function TransactionItem({
           backgroundColor={backgroundColor}
           borderColor={borderColor}
           label={label}
+          fontType={fontType}
         />
       </View>
     </View>

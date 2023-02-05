@@ -1,4 +1,5 @@
 import {ResponseAPI} from '@utils';
+import {fontType} from '@root/src/themes';
 
 export type Transaction = {
   id: string;
@@ -21,11 +22,7 @@ export type Transactionlist = {
 
 export type TransactionlistResponse = ResponseAPI<Transactionlist>;
 
-export type ColorAndLabel = {
-  backgroundColor: string;
-  borderColor: string;
-  label: string;
-};
+export type FontTypeStyle = keyof typeof fontType;
 
 export type BarStatuProps = {
   backgroundColor: string;
@@ -33,6 +30,7 @@ export type BarStatuProps = {
 
 export interface LabelStatusProps extends BarStatuProps {
   borderColor: string;
+  fontType: FontTypeStyle;
   label: string;
 }
 

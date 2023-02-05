@@ -1,15 +1,15 @@
 import React from 'react';
-import {Text, TextInput} from 'react-native';
-import {View} from '@components';
-import {radius, spacings} from '@root/src/themes';
-import {useSetRecoilState} from 'recoil';
+import {TextInput} from 'react-native';
+import {View, Text} from '@components';
+import {radius, spacings, fontType} from '@root/src/themes';
+import {useRecoilState} from 'recoil';
 import {aSearch} from '../transactionList.model';
 import Sorting from './Sorting';
 
 let delayTimer: number;
 
 function Search(): JSX.Element {
-  const setSearch = useSetRecoilState(aSearch);
+  const [search, setSearch] = useRecoilState(aSearch);
 
   const findData = (text: string) => {
     if (text === '') {
@@ -25,6 +25,9 @@ function Search(): JSX.Element {
 
   return (
     <TextInput
+      style={
+        search ? fontType.fs12fw400BlackUnderline : fontType.fs12fw400Black
+      }
       placeholder="Cari nama, bank atau nominal"
       onChangeText={(text: string) => findData(text)}
     />
