@@ -1,16 +1,17 @@
 import React from 'react';
-import {Modal, Pressable, StyleSheet} from 'react-native';
+import {Image, Modal, Pressable} from 'react-native';
 import {View, Text} from '@components';
 import {sortingList} from '../transactionList.datasource';
-import {colors, radius, spacings} from '@root/src/themes';
+import {colors, images, radius, spacings} from '@root/src/themes';
 import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
 import {aModalSorting, aSorting} from '../transactionList.model';
 import {SortingProps} from '../transactionList.interface';
+import {styles} from '../transactionList.style';
 
 function SortingItem(sortingData: SortingProps): JSX.Element {
   const {label} = sortingData;
   const setModalVisible = useSetRecoilState(aModalSorting);
-  const setSorting = useSetRecoilState(aSorting);
+  const [sorting, setSorting] = useRecoilState(aSorting);
 
   const onSelectSorting = () => {
     setModalVisible(false);
@@ -21,7 +22,14 @@ function SortingItem(sortingData: SortingProps): JSX.Element {
     <Pressable onPress={() => onSelectSorting()}>
       <View row alignItems="center">
         <View>
-          <Text>BLT</Text>
+          <Image
+            source={
+              sorting.label === sortingData.label
+                ? images.iconRadioOn
+                : images.iconRadioOff
+            }
+            style={styles.icon}
+          />
         </View>
         <Text>{label}</Text>
       </View>
@@ -80,18 +88,14 @@ function Sorting(): JSX.Element {
   return (
     <>
       <Pressable onPress={() => setModalVisible(true)}>
-        <Text type="fs12fw800Orange">{sorting.label} V</Text>
+        <View row size="plain">
+          <Text type="fs12fw800Orange">{sorting.label}</Text>
+          <Image source={images.iconChevronDown} style={styles.icon} />
+        </View>
       </Pressable>
       <SortingModal />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  containerModal: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    flex: 1,
-  },
-});
 
 export default Sorting;

@@ -1,10 +1,11 @@
 import React from 'react';
-import {TextInput} from 'react-native';
-import {View, Text} from '@components';
-import {radius, spacings, fontType} from '@root/src/themes';
+import {Image, TextInput} from 'react-native';
+import {View} from '@components';
+import {radius, spacings, fontType, images, colors} from '@root/src/themes';
 import {useRecoilState} from 'recoil';
 import {aSearch} from '../transactionList.model';
 import Sorting from './Sorting';
+import {styles} from '../transactionList.style';
 
 let delayTimer: number;
 
@@ -39,13 +40,17 @@ function SearchAndSorting(): JSX.Element {
     <View
       row
       size="plain"
+      alignItems="center"
       marginVertical={spacings.space4}
       paddingVertical={spacings.space8}
       paddingHorizontal={spacings.space4}
       borderRadius={radius.round10}
       backgroundColor="white">
       <View>
-        <Text>ICN</Text>
+        <Image
+          source={images.iconSearch}
+          style={[styles.icon, {tintColor: colors.gray}]}
+        />
       </View>
       <View flex>
         <Search />

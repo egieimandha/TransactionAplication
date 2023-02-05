@@ -4,14 +4,15 @@ import {useRecoilValue} from 'recoil';
 import {afTransaction} from '../transactionList/transactionList.model';
 import {useRoute} from '@react-navigation/native';
 import {TransactionDetailNavigationProps} from '@root/src/navigation/screens.interface';
-import {colors, spacings} from '@root/src/themes';
-import {generateBankName} from '../transactionList/transactionList.utils';
+import {colors, images, spacings} from '@root/src/themes';
 import {dateStringToDate, toCurrency} from '@root/src/utils/strings';
 import {
   TransactionDetailItem,
   TransactionDetailContainer,
   CloseScreen,
 } from './transactionDetail.fragments/TransactionDetailFragmetns';
+import {Image, Pressable, StyleSheet} from 'react-native';
+import BankName from '../transactionList/transactionList.fragments/BankName';
 
 function TransactionDetail(): JSX.Element {
   const {params} = useRoute<TransactionDetailNavigationProps>();
@@ -34,11 +35,16 @@ function TransactionDetail(): JSX.Element {
         <View size="plain">
           <View size="small" />
           <View
+            row
             size="plain"
             paddingVertical={spacings.space12}
             paddingHorizontal={spacings.space16}
-            backgroundColor={colors.white}>
+            backgroundColor={colors.white}
+            alignItems="center">
             <Text type="fs12fw800Black">{`ID TRANSAKSI: #${id}`}</Text>
+            <Pressable>
+              <Image source={images.iconCopy} style={styles.icon} />
+            </Pressable>
           </View>
           <TransactionDetailContainer>
             <View size="plain" row>
@@ -50,9 +56,11 @@ function TransactionDetail(): JSX.Element {
           </TransactionDetailContainer>
           <TransactionDetailContainer>
             <View row size="plain" marginVertical={spacings.space2}>
-              <Text type="fs14fw800Black">{`${generateBankName(
-                sender_bank,
-              )} -> ${generateBankName(beneficiary_bank)}`}</Text>
+              <BankName
+                fontType="fs14fw800Black"
+                sender={sender_bank}
+                beneficiary={beneficiary_bank}
+              />
             </View>
             <TransactionDetailItem
               leftContent={{
@@ -96,5 +104,14 @@ function TransactionDetail(): JSX.Element {
     </View>
   );
 }
+
+export const styles = StyleSheet.create({
+  icon: {
+    marginLeft: spacings.space4,
+    width: spacings.space16,
+    height: spacings.space16,
+    tintColor: colors.orange,
+  },
+});
 
 export default TransactionDetail;

@@ -7,12 +7,10 @@ import {
   LabelStatusProps,
   Transaction,
 } from '../transactionList.interface';
-import {
-  generateBankName,
-  generateColorAndLabel,
-} from '../transactionList.utils';
+import {generateColorAndLabel} from '../transactionList.utils';
 import {afTransaction} from '../transactionList.model';
 import {useRecoilState} from 'recoil';
+import BankName from './BankName';
 
 function LabelStatus({
   backgroundColor,
@@ -76,9 +74,7 @@ function TransactionItem(dataTransaction: Transaction): JSX.Element {
       borderRadius={radius.round10}>
       <BarStatus backgroundColor={borderColor} />
       <View flex>
-        <Text type="fs12fw800Black">{`${generateBankName(
-          sender_bank,
-        )} -> ${generateBankName(beneficiary_bank)}`}</Text>
+        <BankName sender={sender_bank} beneficiary={beneficiary_bank} />
         <Text uppercase>{beneficiary_name}</Text>
         <Text>{`${toCurrency(amount)} . ${dateStringToDate(created_at)}`}</Text>
       </View>

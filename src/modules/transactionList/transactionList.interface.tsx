@@ -39,3 +39,9 @@ export type SortingProps = {
   sortby: string;
   sorttype: string;
 };
+
+export type BankNameProps = {
+  sender: string;
+  beneficiary: string;
+  fontType?: FontTypeStyle;
+};
