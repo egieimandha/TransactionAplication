@@ -5,7 +5,7 @@
 - Typescipt with DDD patern
 - Axios for API call
 - [React Native Navigation](https://reactnavigation.org/) for navigation
-- [Recoil] for state management
+- [Recoil](https://recoiljs.org/) for state management
 
 ## :arrow_up: How to Setup
 
