@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, TextInput} from 'react-native';
+import {Image, Platform, TextInput} from 'react-native';
 import {View} from '@components';
-import {radius, spacings, fontType, images, colors} from '@root/src/themes';
+import {radius, spacings, images, colors} from '@root/src/themes';
 import {useRecoilState} from 'recoil';
 import {aSearch} from '../transactionList.model';
 import Sorting from './Sorting';
@@ -36,9 +36,6 @@ function Search(): JSX.Element {
   return (
     <TextInput
       ref={inputRef}
-      style={
-        search ? fontType.fs12fw400BlackUnderline : fontType.fs12fw400Black
-      }
       placeholder="Cari nama, bank atau nominal"
       onChangeText={(text: string) => findData(text)}
     />
@@ -52,22 +49,27 @@ function SearchAndSorting(): JSX.Element {
       size="plain"
       alignItems="center"
       marginVertical={spacings.space4}
-      paddingVertical={spacings.space8}
-      paddingHorizontal={spacings.space4}
+      paddingVertical={
+        Platform.OS === 'android' ? -spacings.space20 : spacings.space12
+      }
+      paddingHorizontal={spacings.space8}
       borderRadius={radius.round10}
       backgroundColor="white">
-      <View>
-        <Image
-          source={images.iconSearch}
-          style={[styles.icon, {tintColor: colors.gray}]}
-        />
-      </View>
-      <View flex>
+      <Image
+        source={images.iconSearch}
+        style={[
+          styles.icon,
+          {
+            tintColor: colors.gray,
+            marginRight:
+              Platform.OS === 'android' ? spacings.space2 : spacings.space6,
+          },
+        ]}
+      />
+      <View flex size="plain">
         <Search />
       </View>
-      <View>
-        <Sorting />
-      </View>
+      <Sorting />
     </View>
   );
 }

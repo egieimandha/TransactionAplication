@@ -1,4 +1,4 @@
-import {colors} from '../themes/colors';
+import {colors} from './colors';
 import {normalize} from './metrics';
 
 const fontsize = {

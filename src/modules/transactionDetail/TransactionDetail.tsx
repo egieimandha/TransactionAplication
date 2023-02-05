@@ -10,7 +10,7 @@ import {
   TransactionDetailItem,
   TransactionDetailContainer,
   CloseScreen,
-} from './transactionDetail.fragments/TransactionDetailFragmetns';
+} from './transactionDetail.fragments/TransactionDetailFragments';
 import {Image, Pressable, StyleSheet} from 'react-native';
 import BankName from '../transactionList/transactionList.fragments/BankName';
 

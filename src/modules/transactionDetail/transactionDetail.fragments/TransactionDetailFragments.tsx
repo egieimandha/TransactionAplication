@@ -3,7 +3,7 @@ import {Pressable} from 'react-native';
 import {View, Text} from '@components';
 import {colors, spacings} from '@root/src/themes';
 import {useNavigation} from '@react-navigation/native';
-import {RootStackNavigationProps} from '@root/src/navigation/screens.interface';
+import {RootStackNavigationProps} from '@navigation/screens.interface';
 
 function TransactionHeaderAndBody({
   header,

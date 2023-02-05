@@ -1,5 +1,11 @@
 import React from 'react';
-import {Pressable, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
+import {
+  Pressable,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+  Platform,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Container, Text, View} from '@components';
 import {RootStackNavigationProps} from '@navigation/screens.interface';
@@ -11,11 +17,11 @@ import {
   sFinalTransactionLists,
 } from './transactionList.model';
 import {Transaction} from './transactionList.interface';
-import {colors, radius, spacings} from '@root/src/themes';
+import {colors, display, radius, spacings} from '@root/src/themes';
 import TransactionItem from './transactionList.fragments/TransactionItem';
 import SearchAndSorting from './transactionList.fragments/SearchAndSorting';
 import {useRecoilValue, useResetRecoilState, useSetRecoilState} from 'recoil';
-import {useLoading} from '@root/src/hooks';
+import {useLoading} from 'hooks';
 
 function TransactionFlatlist(): JSX.Element {
   const {navigate} = useNavigation<RootStackNavigationProps>();
@@ -108,7 +114,7 @@ function TransactionList(): JSX.Element {
 
 const styles = StyleSheet.create({
   avoidPaddingFlatlist: {
-    marginBottom: spacings.space60,
+    marginBottom: display.screenHeight * (Platform.OS === 'android' ? 0.15 : 0),
   },
 });
 
