@@ -11,6 +11,15 @@ let delayTimer: number;
 
 function Search(): JSX.Element {
   const [search, setSearch] = useRecoilState(aSearch);
+  const inputRef = React.createRef<TextInput>();
+
+  React.useEffect(() => {
+    if (!search) {
+      inputRef.current?.setNativeProps({
+        text: '',
+      });
+    }
+  }, [inputRef, search]);
 
   const findData = (text: string) => {
     if (text === '') {
@@ -26,6 +35,7 @@ function Search(): JSX.Element {
 
   return (
     <TextInput
+      ref={inputRef}
       style={
         search ? fontType.fs12fw400BlackUnderline : fontType.fs12fw400Black
       }
