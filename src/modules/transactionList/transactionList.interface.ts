@@ -1,4 +1,4 @@
-import {ResponseAPI} from '@utils';
+import {ResponseAPI} from '@root/src/utils';
 import {fontType} from '@root/src/themes';
 
 export type Transaction = {
